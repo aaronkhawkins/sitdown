@@ -1,0 +1,19 @@
+= SitDown
+ 
+The Anti-Standup
+ 
+== DESCRIPTION:
+ 
+SitDown is a simple application that's designed to help eliminate standups that have
+degenerated beyond usefulness.
+
+It was inspired by a timed confluence of real life experiences,
+a recent Dilbert comic[http://www.dilbert.com/strips/comic/2008-04-15/], and an
+interesting blog post[http://www.37signals.com/svn/posts/976-a-peek-at-inout-an-internal-app-at-37signals]
+by 37signals that we'd never be able to take advantage of because it's outside our company firewall.
+We accept that this won't ever really be nearly as cool as their work, but if you can't push information
+outside your firewall then you may be stuck with us.
+ 
+== FEATURES:
+ 
+* Intended to be installed behind your company's firewall to keep your data (and your hosting) as your problem.
