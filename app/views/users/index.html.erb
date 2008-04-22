@@ -1,0 +1,8 @@
+<h1>Listing users</h1>
+<% for user in @users %>
+	<%= @user.login %> <%= link_to 'Show', user %> <%= link_to 'Edit', edit_user_path(user) %> <%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %>
+<% end %>
+
+<br />
+
+<%= link_to 'New user', new_user_path %>
