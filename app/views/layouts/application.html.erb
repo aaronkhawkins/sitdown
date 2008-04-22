@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Sitdown - the Anti Standup</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<%= stylesheet_link_tag "style", :title => "Blue", :media => "all" %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+</head>
+<body>
+
+<div id="header">
+
+	<div id="header_inner" class="fixed">
+
+		<div id="logo">
+			<h1><span>SitDown</span></h1>
+			<h2>For those times when you don't want to stand up</h2>
+		</div>
+		
+		
+		
+	</div>
+
+	<div id="header-links">
+		<% if logged_in? %>
+			Logged in as <%= link_to "#{h current_user.login}", user_path(@current_user) %> <%= link_to 'Logout', logout_path %>
+		<% else %>
+			<%= link_to 'Login', login_path %> or <%= link_to 'Sign Up', signup_path %>
+		<% end %>	
+	</div>
+</div>
+
+<div id="main">
+
+	<div id="main_inner" class="fixed">
+
+		<div id="primaryContent_columnless">
+
+			<div id="columnA_columnless">
+				<%= yield %>
+								
+		
+			</div>
+	
+		</div>
+
+		<br class="clear" />
+
+	</div>
+
+</div>
+
+<!-- <div id="footer" class="fixed">
+	Copyright &copy; 2008 Dragonfly Data. All rights reserved. Design by <a href="http://www.nodethirtythree.com/">NodeThirtyThree Design</a>.
+</div> -->
+
+</body>
+</html>

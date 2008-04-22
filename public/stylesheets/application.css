@@ -1,0 +1,23 @@
+#header-links{
+	position:absolute;
+	top: .25em;
+	right: .5em;
+	color: #fff;
+	font-weight: font-variant: normal/small-caps;
+}
+
+#header-links a{
+	color: #ffffff;
+	padding-right: .25em;
+	
+}
+
+#site-logo {
+    background-image: url("../images/sitdown.png");
+    background-repeat: no-repeat;
+    background-position: bottom left;
+	height: 64px;
+/*	padding-top: 30px;*/
+/*	margin-left: 18px;*/
+  }
+
