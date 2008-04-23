@@ -1,5 +1,5 @@
 <p>
-<% form_for([user, Status.new]) do |f| -%>
+<% remote_form_for([user, Status.new]) do |f| -%>
 	Currently, I'm <%= f.text_field :description %>.
 <% end -%>
 </p>

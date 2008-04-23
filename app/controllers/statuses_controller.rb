@@ -11,7 +11,11 @@ class StatusesController < ApplicationController
         status.active_until = @status.created_at
         status.save!
       end
-      redirect_to :controller => "users", :action => "show", :id => @user
+      render :update do |page| 
+        page.replace_html "status", :partial => "users/display_status" 
+      end 
+      
+      # redirect_to :controller => "users", :action => "show", :id => @user
     end
   end
 

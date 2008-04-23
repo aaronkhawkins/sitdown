@@ -1,6 +1,7 @@
 <h3><%= link_to @user.name %></h3>
 <% unless @status.nil? -%>
-<p>I've been <b><%= @status.description %></b> for <em><%= time_ago_in_words(@status.created_at) %></em> or so.</p>
+<%= render :partial => 'display_status' %>
+
 <% else -%>
 <p>hasn't posted a status yet.</p>
 <% end -%>
