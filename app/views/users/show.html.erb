@@ -7,5 +7,6 @@
 <% end -%>
 
 <%= render :partial => "statuses/form", :locals => { :user => @user } %>
-
-<%= render :partial => "statuses/previous", :collection => @old_statuses %>
+<div id="old-status">
+	<%= render :partial => "statuses/previous", :collection => @old_statuses %>
+</div>

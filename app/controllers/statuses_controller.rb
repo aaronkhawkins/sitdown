@@ -11,11 +11,12 @@ class StatusesController < ApplicationController
         status.active_until = @status.created_at
         status.save!
       end
+      # @old_statuses = @user.statuses.find_inactive
       render :update do |page| 
-        page.replace_html "status", :partial => "users/display_status" 
+        page.replace_html "status", :partial => "users/display_status"
+        page['new_status'].reset
+        page.replace_html "old-status", :partial => "previous", :collection => @user.statuses.find_inactive
       end 
-      
-      # redirect_to :controller => "users", :action => "show", :id => @user
     end
   end
 
