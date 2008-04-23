@@ -1,12 +1,40 @@
+<div id="primaryContent_2columns">
+
+	<div id="columnA_2columns">
 <h3><%= link_to @user.name %></h3>
-<% unless @status.nil? -%>
-<%= render :partial => 'display_status' %>
+	
+		<% unless @status.nil? -%>
+			<%= render :partial => 'display_status' %>
+		<% else -%>
+			<p>hasn't posted a status yet.</p>
+		<% end -%>
 
-<% else -%>
-<p>hasn't posted a status yet.</p>
-<% end -%>
+		<%= render :partial => "statuses/form", :locals => { :user => @user } %>
+		<div id="old-status">
+			<%= render :partial => "statuses/previous", :collection => @old_statuses %>
+		</div>
 
-<%= render :partial => "statuses/form", :locals => { :user => @user } %>
-<div id="old-status">
-	<%= render :partial => "statuses/previous", :collection => @old_statuses %>
+	</div>
+
 </div>
+
+<div id="secondaryContent_2columns">
+
+	<div id="columnC_2columns">
+		<div id="user-achievements">
+			<%= render :partial => "achievements/form", :locals => { :user => @user } %>
+			<div id="historical-achievements">
+				<%= render :partial => "achievements/historical_achievements", :collection => @historical_achievements %>
+			</div>
+		</div>
+		
+	</div>
+
+</div>
+
+
+
+
+
+
+

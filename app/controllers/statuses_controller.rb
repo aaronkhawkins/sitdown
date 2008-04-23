@@ -11,7 +11,6 @@ class StatusesController < ApplicationController
         status.active_until = @status.created_at
         status.save!
       end
-      # @old_statuses = @user.statuses.find_inactive
       render :update do |page| 
         page.replace_html "status", :partial => "users/display_status"
         page['new_status'].reset

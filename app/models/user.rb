@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :password
   
   has_many :statuses
+  has_many :achievements
 
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?

@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @status = @user.statuses.find_active.first
     @old_statuses = @user.statuses.find_inactive
+    @historical_achievements = @user.achievements.historical
 
     respond_to do |format|
       format.html # show.html.erb
