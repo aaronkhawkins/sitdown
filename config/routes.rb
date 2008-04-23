@@ -1,7 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :pillows
 
-  map.resources :users
+  map.resources :users, :has_many => :statuses
 
   map.resource :session
   

@@ -1,4 +1,10 @@
-<%= @user.login %>
-<%= @user.name %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h3><%= link_to @user.name %></h3>
+<% unless @status.nil? -%>
+<p>I've been <b><%= @status.description %></b> for <em><%= time_ago_in_words(@status.created_at) %></em> or so.</p>
+<% else -%>
+<p>hasn't posted a status yet.</p>
+<% end -%>
+
+<%= render :partial => "statuses/form", :locals => { :user => @user } %>
+
+<%= render :partial => "statuses/previous", :collection => @old_statuses %>
