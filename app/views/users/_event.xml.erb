@@ -1,0 +1,11 @@
+<event 
+    start="<%=h event.created_at %>"
+	<% if event.respond_to? "active_until" -%>
+    end="<%=h event.active_until %>"
+    isDuration="true"
+	<% end -%>
+    title="<%=h event.description %>"
+    image="<%=h event.user.gravatar_url %>"
+    >
+    <%=h event.description %>
+    </event>

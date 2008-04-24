@@ -70,6 +70,11 @@ class User < ActiveRecord::Base
     @activated
   end
 
+  # Returns a Gravatar URL associated with the email parameter.
+  def gravatar_url
+    "http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.new.update(email)}&rating=G&size=40"
+  end
+
   protected
     # before filter 
     def encrypt_password
