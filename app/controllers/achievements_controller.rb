@@ -5,9 +5,9 @@ class AchievementsController < ApplicationController
     @achievement = @user.achievements.new(params[:achievement])
     if @achievement.save!
       render :update do |page| 
-        # page.replace_html "achievement", :partial => "users/display_achievements"
         page['new_achievement'].reset
-        page.replace_html "historical-achievements", :partial => "historical_achievements", :collection => @user.achievements.historical
+        page << "eventSource.clear()"
+        page << "Timeline.loadXML(\"#{url_for(@user)}.xml\", function(xml, url) { eventSource.loadXML(xml, url); });"
       end 
     end
   end

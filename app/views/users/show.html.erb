@@ -1,3 +1,7 @@
+<% content_for(:timelines) do %>
+	Timeline.loadXML("<%= "#{url_for(@user)}.xml" %>", function(xml, url) { eventSource.loadXML(xml, url); });
+<% end %>
+
 <div id="primaryContent_2columns">
 
 	<div id="columnA_2columns">
@@ -10,8 +14,8 @@
 		<% end -%>
 
 		<%= render :partial => "statuses/form", :locals => { :user => @user } %>
-		<div id="old-status">
-			<%= render :partial => "statuses/previous", :collection => @old_statuses %>
+
+		<div id="timeline" style="width: 100%; height: 500px; border: 1px solid #aaa">
 		</div>
 
 	</div>
@@ -23,9 +27,6 @@
 	<div id="columnC_2columns">
 		<div id="user-achievements">
 			<%= render :partial => "achievements/form", :locals => { :user => @user } %>
-			<div id="historical-achievements">
-				<%= render :partial => "achievements/historical_achievements", :collection => @historical_achievements %>
-			</div>
 		</div>
 		
 	</div>

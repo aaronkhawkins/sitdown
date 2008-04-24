@@ -1,7 +1,8 @@
 <event 
     start="<%=h event.created_at %>"
 	<% if event.respond_to? "active_until" -%>
-    end="<%=h event.active_until %>"
+	<%   end_time = event.active_until || Time.now -%>
+    end="<%=h end_time %>"
     isDuration="true"
 	<% end -%>
     title="<%=h event.description %>"

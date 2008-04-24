@@ -14,7 +14,8 @@ class StatusesController < ApplicationController
       render :update do |page| 
         page.replace_html "status", :partial => "users/display_status"
         page['new_status'].reset
-        page.replace_html "old-status", :partial => "previous", :collection => @user.statuses.find_inactive
+        page << "eventSource.clear()"
+        page << "Timeline.loadXML(\"#{url_for(@user)}.xml\", function(xml, url) { eventSource.loadXML(xml, url); });"
       end 
     end
   end
