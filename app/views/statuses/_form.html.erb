@@ -1,5 +1,6 @@
-<div id="status_form">
+<div id="status_form" style="display: none">
 <% remote_form_for([user, Status.new]) do |f| -%>
-	Currently, I'm <%= f.text_field :description %>.
+	<%= f.text_area :description, :rows => 5, :cols => 35, :value => @user.current_status.description %><br />
+	<%= f.submit "Update status", :onclick => "$('status-message').toggle(); $('status_form').toggle();" %> or <a href="#" onclick="$('status-message').toggle(); $('status_form').toggle(); return false;">Cancel</a>
 <% end -%>
 </div>

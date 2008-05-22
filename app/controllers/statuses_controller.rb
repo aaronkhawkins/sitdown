@@ -12,7 +12,8 @@ class StatusesController < ApplicationController
         status.save!
       end
       render :update do |page| 
-        page.replace_html "status", :partial => "users/display_status"
+        page.replace_html "status-message", :partial => "users/display_status"
+        page.replace_html "side-status-#{@user.id}", @status.description
         page['new_status'].reset
         page << "eventSource.clear()"
         page << "Timeline.loadXML(\"#{url_for(@user)}.xml\", function(xml, url) { eventSource.loadXML(xml, url); });"

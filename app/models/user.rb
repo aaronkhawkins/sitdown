@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation, :name
+  
+  def current_status
+    statuses.find_active(:order => "created_at DESC").first
+  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -71,8 +75,8 @@ class User < ActiveRecord::Base
   end
 
   # Returns a Gravatar URL associated with the email parameter.
-  def gravatar_url
-    "http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.new.update(email)}&rating=G&size=80"
+  def gravatar_url(size=80)
+    "http://www.gravatar.com/avatar.php?gravatar_id=#{Digest::MD5.new.update(email)}&rating=G&size=#{size}"
   end
 
   protected

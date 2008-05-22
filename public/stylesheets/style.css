@@ -444,11 +444,8 @@ div#status {
 	max-width: 80%;
 }
 
-div#status_form {
-	clear: both;
-}
-
-#status-description {
+#status-description,
+div#status textarea {
 	color: #000;
 	font-weight: bold;
 	font-size: 150%;
@@ -463,4 +460,8 @@ div#status_form {
 h4 {
 	margin-bottom: 0;
 	padding-bottom: 0;
+}
+
+#achievements {
+	clear: both;
 }
