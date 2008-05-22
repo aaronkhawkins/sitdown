@@ -1,1 +1,1 @@
-<div id="status-message"><span id="status-description"><%= @status.description %></span> <div id="status-ago">&mdash; <%= time_ago_in_words(@status.created_at) %> ago</div></div>
+<div id="status-message"><span id="status-description"><%= @status.nil? ? "hasn't posted a status yet" : @status.description %></span> <% unless @status.nil? -%><div id="status-ago">&mdash; <%= time_ago_in_words(@status.created_at) %> ago</div><% end -%></div>

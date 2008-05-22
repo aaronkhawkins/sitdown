@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @status = @user.current_status
     @old_statuses = @user.statuses.find_inactive
     @historical_achievements = @user.achievements.historical
+    @achievements = Achievement.find(:all)
 
     respond_to do |format|
       format.html # show.html.erb

@@ -9,11 +9,7 @@
 	
 	<div id="avatar"><img src="<%= @user.gravatar_url(80) %>" height="80"/></div>
 	<div id="status">
-		<% unless @status.nil? -%>
-			<div id="display-status" <% if current_user.id == @user.id %>onclick="$('status-message').toggle(); if ($('status_form').toggle().visible()) $('status_form').down('textarea').activate();;"<% end %>><%= render :partial => 'display_status' %></div>
-		<% else -%>
-			<p>hasn't posted a status yet.</p>
-		<% end -%>
+		<div id="display-status" <% if current_user.id == @user.id %>onclick="$('status-message').toggle(); if ($('status_form').toggle().visible()) $('status_form').down('textarea').activate();;"<% end %>><%= render :partial => 'display_status' %></div>
 		<%= render :partial => "statuses/form", :locals => { :user => @user } %>
 	</div>
 	<div id="achievements">
@@ -22,12 +18,18 @@
 		<% end -%>
 
 		<div id="achievement-list">
-		<% Achievement.find(:all).group_by(&:day).sort.reverse.each do |day, achievements| -%>
+		<% @achievements.group_by(&:day).sort.reverse.each do |day, achievements| -%>
 			<h3><%= day.strftime("%A, %B %d") %></h3>
 			<ul id="day-<%= day.to_i %>">
 			<% achievements.reverse.each do |ach| -%>
 				<%= render :partial => 'day_achievement', :locals => { :ach => ach } %>
 			<% end -%>
+			</ul>
+		<% end -%>
+		<% if @achievements.size == 0 -%>
+			<% day = Time.now.midnight %>
+			<h3><%= day.strftime("%A, %B %d") %></h3>
+			<ul id="day-<%= day.to_i %>">
 			</ul>
 		<% end -%>
 		</div>

@@ -1,1 +1,3 @@
+<% unless status.nil? -%>
 <%= time_ago_in_words(status.created_at) %> ago
+<% end -%>
