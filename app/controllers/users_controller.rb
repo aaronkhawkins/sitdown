@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:id] || current_user.id)
     @status = @user.current_status
     @old_statuses = @user.statuses.find_inactive
     @historical_achievements = @user.achievements.historical
