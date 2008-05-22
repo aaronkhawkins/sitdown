@@ -7,7 +7,7 @@
 	<div id="columnA_2columns">
 <h3><%= link_to @user.name %></h3>
 	
-	<div id="avatar"><img src="<%= @user.gravatar_url(80) %>"/></div>
+	<div id="avatar"><img src="<%= @user.gravatar_url(80) %>" height="80"/></div>
 	<div id="status">
 		<% unless @status.nil? -%>
 			<div id="display-status" <% if current_user.id == @user.id %>onclick="$('status-message').toggle(); if ($('status_form').toggle().visible()) $('status_form').down('textarea').activate();;"<% end %>><%= render :partial => 'display_status' %></div>
@@ -41,14 +41,7 @@
 
 	<div id="columnC_2columns">
 		<div id="user-achievements">
-			<% User.find(:all, :order => "name").each do |user| -%>
-			  <h4><img src="<%= user.gravatar_url(50) %>"/> <%= link_to user.name, user %></h4>
-			  <% status = user.statuses.find_active.first %>
-			  <div class="side-status" id="side-status-<%= user.id %>"><%= status.description unless status.nil? %></div>
-			   <div id="side-achievement-<%= user.id %>">
-			  	<%= render :partial => 'side_achievements', :locals => { :user => user } %>
-				</div>
-			<% end -%>
+			<%= render :partial => 'user_achievements' %>
 		</div>
 		
 	</div>

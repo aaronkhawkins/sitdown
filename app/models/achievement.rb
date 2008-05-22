@@ -1,5 +1,6 @@
 class Achievement < ActiveRecord::Base
   belongs_to :user
+  validates_presence_of :description
   
   def self.historical(limit=0)
     results = find(:all, :order => 'created_at DESC')

@@ -1,0 +1,8 @@
+<% User.find(:all, :order => "name").each do |user| -%>
+  <h4><img src="<%= user.gravatar_url(50) %>" heigh="50" width="50"/> <%= link_to user.name, user %></h4>
+  <% status = user.statuses.find_active.first %>
+  <div class="side-status" id="side-status-<%= user.id %>"><%= status.description unless status.nil? %></div>
+   <div id="side-achievement-<%= user.id %>">
+  	<%= render :partial => 'side_achievements', :locals => { :user => user } %>
+	</div>
+<% end -%>
