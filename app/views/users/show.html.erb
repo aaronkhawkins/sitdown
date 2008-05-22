@@ -1,5 +1,5 @@
 <% content_for(:timelines) do %>
-	Timeline.loadXML("<%= "#{url_for(@user)}.xml" %>", function(xml, url) { eventSource.loadXML(xml, url); });
+	//Timeline.loadXML("<%= "#{url_for(@user)}.xml" %>", function(xml, url) { eventSource.loadXML(xml, url); });
 <% end %>
 
 <div id="primaryContent_2columns">
@@ -10,7 +10,7 @@
 	<div id="avatar"><img src="<%= @user.gravatar_url(80) %>"/></div>
 	<div id="status">
 		<% unless @status.nil? -%>
-			<div id="display-status" onclick="$('status-message').toggle(); if ($('status_form').toggle().visible()) $('status_form').down('textarea').activate();;"><%= render :partial => 'display_status' %></div>
+			<div id="display-status" <% if current_user.id == @user.id %>onclick="$('status-message').toggle(); if ($('status_form').toggle().visible()) $('status_form').down('textarea').activate();;"<% end %>><%= render :partial => 'display_status' %></div>
 		<% else -%>
 			<p>hasn't posted a status yet.</p>
 		<% end -%>
@@ -18,13 +18,18 @@
 	</div>
 
 	<div id="achievements">
+		<% if current_user.id == @user.id -%>
 		<%= render :partial => "achievements/form", :locals => { :user => @user } %>
-
-		<ul>
-		<% Achievement.find(:all).each do |ach| -%>
-		<li><b><%= ach.user.name %>:</b> <%= ach.description %></li>
 		<% end -%>
-		</ul>
+
+		<% Achievement.find(:all).group_by(&:day).sort.reverse.each do |day, achievements| -%>
+			<h3><%= day.strftime("%A, %B %d") %></h3>
+			<ul id="day-<%= day.to_i %>">
+			<% achievements.reverse.each do |ach| -%>
+				<%= render :partial => 'day_achievement', :locals => { :ach => ach } %>
+			<% end -%>
+			</ul>
+		<% end -%>
 	</div>
 
   </div>
@@ -35,15 +40,13 @@
 
 	<div id="columnC_2columns">
 		<div id="user-achievements">
-			<% User.find(:all, :order => "created_at DESC").each do |user| -%>
+			<% User.find(:all, :order => "name").each do |user| -%>
 			  <h4><img src="<%= user.gravatar_url(50) %>"/> <%= link_to user.name, user %></h4>
 			  <% status = user.statuses.find_active.first %>
 			  <div class="side-status" id="side-status-<%= user.id %>"><%= status.description unless status.nil? %></div>
-			  <ul>
-				<% user.achievements.each do |ach| -%>
-				<li><%= ach.description %></li>
-				<% end -%>
-			  </ul>
+			   <div id="side-achievement-<%= user.id %>">
+			  	<%= render :partial => 'side_achievements', :locals => { :user => user } %>
+				</div>
 			<% end -%>
 		</div>
 		

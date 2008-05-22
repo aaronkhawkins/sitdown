@@ -1,0 +1,8 @@
+			  <h4><img src="<%= user.gravatar_url(50) %>"/> <%= link_to user.name, user %></h4>
+			  <% status = user.statuses.find_active.first %>
+			  <div class="side-status" id="side-status-<%= user.id %>"><%= status.description unless status.nil? %></div>
+			  <ul>
+				<% user.achievements.historical(3).each do |ach| -%>
+				<li><%= ach.description %></li>
+				<% end -%>
+			  </ul>

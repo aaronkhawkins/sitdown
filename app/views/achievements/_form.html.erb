@@ -1,5 +1,7 @@
-<p>
+<b>Add a log entry</b>
+<div id="achievement_form">
 <% remote_form_for([user, Achievement.new]) do |f| -%>
-	I just <%= f.text_field :description %>.
+	<%= f.text_field :description, :size => 40 %>
 <% end -%>
-</p>
+</div>
+<p />

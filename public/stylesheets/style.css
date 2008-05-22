@@ -464,4 +464,24 @@ h4 {
 
 #achievements {
 	clear: both;
+	color: #000;
+	font-size: 150%;
+}
+
+#achievements li {
+	margin-bottom: .5em;
+}
+
+#achievements h3 {
+	font-size: 85%;
+	border-bottom: 1px solid #666;
+	color: #999;
+}
+
+#achievements input[type="text"] {
+	font-size: 110%;
+}
+
+#user-achievements ul {
+	margin-left: 1.5em;
 }
