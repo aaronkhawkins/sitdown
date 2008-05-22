@@ -7,16 +7,24 @@
 	<div id="columnA_2columns">
 <h3><%= link_to @user.name %></h3>
 	
+	<div id="avatar"><img src="http://www.gravatar.com/avatar.php?gravatar_id=<%= Digest::MD5.new.update(@user.email) %>&rating=G&size=50"/></div>
+	<div id="status">
 		<% unless @status.nil? -%>
 			<%= render :partial => 'display_status' %>
 		<% else -%>
 			<p>hasn't posted a status yet.</p>
 		<% end -%>
+	</div>
 
 		<%= render :partial => "statuses/form", :locals => { :user => @user } %>
 
-		<div id="timeline" style="width: 100%; height: 500px; border: 1px solid #aaa">
-		</div>
+		<%= render :partial => "achievements/form", :locals => { :user => @user } %>
+
+		<ul>
+		<% Achievement.find(:all).each do |ach| -%>
+		<li><b><%= ach.user.name %>:</b> <%= ach.description %></li>
+		<% end -%>
+		</ul>
 
 	</div>
 
@@ -26,7 +34,16 @@
 
 	<div id="columnC_2columns">
 		<div id="user-achievements">
-			<%= render :partial => "achievements/form", :locals => { :user => @user } %>
+			<% User.find(:all).each do |user| -%>
+			  <h4><img src="http://www.gravatar.com/avatar.php?gravatar_id=<%= Digest::MD5.new.update(user.email) %>&rating=G&size=30"/> <%= link_to user.name, user %></h4>
+			  <% status = user.statuses.find_active.first %>
+			  <div class="side-status"><%= status.description unless status.nil? %></div>
+			  <ul>
+				<% user.achievements.each do |ach| -%>
+				<li><%= ach.description %></li>
+				<% end -%>
+			  </ul>
+			<% end -%>
 		</div>
 		
 	</div>

@@ -429,3 +429,38 @@ max-width: 2.5em;
 	position: relative;
 	width: 100%;
 	}
+
+
+div#status,
+div#avatar {
+	float: left;
+}
+
+div#status {
+	margin: 0 1em 2em 1em;
+	padding: 1em;
+	font-size: 120%;
+	border: 1px solid #666;
+	max-width: 80%;
+}
+
+div#status_form {
+	clear: both;
+}
+
+#status-description {
+	color: #000;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+.side-status {
+	color: #000;
+	font-weight: bold;
+	font-size: 150%;
+}
+
+h4 {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}

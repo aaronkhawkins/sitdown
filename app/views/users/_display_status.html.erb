@@ -1,2 +1,1 @@
-<div id="status"><p>I've been <b><%= @status.description %></b> for <em><%= time_ago_in_words(@status.created_at) %></em> or so.</p>
-</div>
+<span id="status-description"><%= @status.description %></span> &mdash; <span id="status-ago"><%= time_ago_in_words(@status.created_at) %> ago or so.</span>
