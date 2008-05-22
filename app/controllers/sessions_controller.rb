@@ -26,7 +26,6 @@ class SessionsController < ApplicationController
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
-    flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+    redirect_to "#{CASClient::Frameworks::Rails::Filter.config[:logout_url]}?serviceUrl=#{root_url}"
   end
 end

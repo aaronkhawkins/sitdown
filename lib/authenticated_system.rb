@@ -9,7 +9,7 @@ module AuthenticatedSystem
     # Accesses the current user from the session. 
     # Future calls avoid the database because nil is not equal to false.
     def current_user
-      @current_user ||= (login_from_session || login_from_basic_auth || login_from_cookie) unless @current_user == false
+      @current_user ||= (login_from_cas || login_from_session || login_from_basic_auth || login_from_cookie ) unless @current_user == false
     end
 
     # Store the given user id in the session.
@@ -64,7 +64,7 @@ module AuthenticatedSystem
       respond_to do |format|
         format.html do
           store_location
-          redirect_to new_session_path
+          redirect_to new_user_path
         end
         format.any do
           request_http_basic_authentication 'Web Password'
@@ -90,6 +90,11 @@ module AuthenticatedSystem
     # available as ActionView helper methods.
     def self.included(base)
       base.send :helper_method, :current_user, :logged_in?
+    end
+
+    # Called from #current_user.  First attempt to login by the user id from cas.
+    def login_from_cas
+      self.current_user = User.find_by_login(session[:cas_user]) if session[:cas_user]
     end
 
     # Called from #current_user.  First attempt to login by the user id stored in the session.

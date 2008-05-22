@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
+    @user = User.new
+    @user.login = session[:cas_user] if session[:cas_user]
   end
 
   def create

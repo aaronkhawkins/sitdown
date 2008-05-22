@@ -57,3 +57,6 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 end
+
+cas_options = YAML::load_file(RAILS_ROOT+'/config/cas.yml')
+CASClient::Frameworks::Rails::Filter.configure(cas_options[RAILS_ENV])

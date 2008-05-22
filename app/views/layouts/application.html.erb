@@ -29,7 +29,11 @@
 		<% if logged_in? %>
 			Logged in as <%= link_to "#{h current_user.login}", user_path(@current_user) %> <%= link_to 'Logout', logout_path %>
 		<% else %>
-			<%= link_to 'Login', login_path %> or <%= link_to 'Sign Up', signup_path %>
+			<% if session[:cas_user] -%>
+				CAS authenticated as <%= session[:cas_user] %>, but not registered yet <%= link_to 'Logout', logout_path %>
+			<% else %>
+				<%= link_to 'Login', login_path %> or <%= link_to 'Sign Up', signup_path %>
+			<% end %>
 		<% end %>	
 	</div>
 </div>

@@ -6,7 +6,7 @@
 class ApplicationController < ActionController::Base
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-
+  before_filter CASClient::Frameworks::Rails::Filter
   helper :all # include all helpers, all the time
 
   # See ActionController::RequestForgeryProtection for details
