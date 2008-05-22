@@ -16,12 +16,12 @@
 		<% end -%>
 		<%= render :partial => "statuses/form", :locals => { :user => @user } %>
 	</div>
-
 	<div id="achievements">
 		<% if current_user.id == @user.id -%>
 		<%= render :partial => "achievements/form", :locals => { :user => @user } %>
 		<% end -%>
 
+		<div id="achievement-list">
 		<% Achievement.find(:all).group_by(&:day).sort.reverse.each do |day, achievements| -%>
 			<h3><%= day.strftime("%A, %B %d") %></h3>
 			<ul id="day-<%= day.to_i %>">
@@ -30,6 +30,7 @@
 			<% end -%>
 			</ul>
 		<% end -%>
+		</div>
 	</div>
 
   </div>
