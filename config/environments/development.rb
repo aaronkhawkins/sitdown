@@ -16,3 +16,7 @@ config.action_view.cache_template_extensions         = false
 
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
+
+
+# Include your application configuration below
+ActionController::Base.filter_parameter_logging :password, :password_confirmation
