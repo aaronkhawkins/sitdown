@@ -25,3 +25,26 @@ set :scm, :git
 role :app, "172.31.0.202"
 role :web, "172.31.0.202"
 role :db,  "172.31.0.202", :primary => true
+
+
+desc 'Creates a virtual server configuration on apache to your application'
+task :create_server_config, :roles => :web do	template = File.read( File.dirname(__FILE__) + '/vhost_config.erb' )
+    buffer = ERB.new(template).result(binding)
+    puts 'Rendering template file'
+    put buffer, "#{shared_path}/#{application}-vhost"
+    puts 'Copying virtual server config to apache folder'
+    sudo "cp #{shared_path}/#{application}-vhost /etc/apache2/sites-available/#{application}-vhost"
+    puts 'Enabling the site on apache'
+    sudo "a2ensite #{application}-vhost"
+end
+
+task :restart_apache do
+    puts 'Restarting the apache server'
+    sudo 'apache2ctl restart'
+end
+
+desc 'Restarting the application'
+task :restart_app do
+    puts 'Restarting the application'
+    run "touch #{deploy_to}/current/tmp/restart.txt"
+end
