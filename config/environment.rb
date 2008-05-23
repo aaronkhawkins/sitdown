@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   # Force all environments to use the same logger level
   # (by default production uses :info, the others :debug)
   # config.log_level = :debug
-  config.logger = Logger.new(File.join(RAILS_ROOT, 'log', "#{RAILS_ENV}.log"), 50, 10.megabyte)
+  config.logger = Logger.new(File.join(RAILS_ROOT, 'log', "#{RAILS_ENV}.log"), 50, 10.1024000)
   
 
 
