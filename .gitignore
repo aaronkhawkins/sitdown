@@ -5,3 +5,4 @@ db/schema.sql
 db/*.sqlite3
 tmp/*
 config/cas.yml
+config/database.yml

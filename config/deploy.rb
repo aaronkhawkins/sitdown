@@ -1,4 +1,5 @@
-set :user, "deploy"  
+set :user, "aaron"  
+set :runner, "aaron"
 set :application, "SitDown"
 set :domain, "sitdown"
 set :server_name, "sitdown"
